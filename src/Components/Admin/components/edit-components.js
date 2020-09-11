@@ -134,7 +134,7 @@ export default class Edit extends Component {
             </div>
             
             <div className="form-group">
-              <input type="submit" value="Edit" className="btn btn-success" />
+              <input type="submit" value="Edit" className="btn btn-outline-dark" />
             </div>
           </form>
         </div>

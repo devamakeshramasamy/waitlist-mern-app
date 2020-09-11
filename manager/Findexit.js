@@ -3,10 +3,15 @@ function Finder(name,mail,data){
         if(mail==data){
             var message="Your"+mail+"is alredy in queue"
             return message
+            // and re-diract to referal page
         }
         else{
+            referalVerfication()
             return addToqueue(mail,name)
         }
     }   
 }
-export default Finder
+function addToqueue(){
+    
+}
+module.exports=Finder

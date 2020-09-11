@@ -1,23 +1,31 @@
-
-const express = require('express');
-const cors = require('cors');
-const chalk = require('chalk');
-
-const mongoose = require('mongoose')
+const express=require('express')
+const mongoose =require('mongoose')
+const bodyParser=require('body-parser')
+const user =require('./Routes/user')
+const admin=require('./Routes/Admin')
 require('dotenv').config();
-const uri= process.env.ATLA_URI
-mongoose.connect(uri,{useNewUrlParser:true,useCreateIndex:true});
-const connection=mongoose.connection;
-connection.once('open',()=>{
-    message="MongoDB is connected Successfully"
-    console.log(chalk.green(message))
+
+const app=express()
+
+app.use(bodyParser.json())
+
+
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = process.env.URI;
+
+const PORT=process.env.PORT | 5000 
+
+
+mongoose.connect(uri,{useNewUrlParser:true,useUnifiedTopology: true});
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
 })
-const app = express();
-const port = process.env.PORT || 5000;
 
-app.use(cors());
-app.use(express.json());
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-});
+app.use('/Api/user',user)
+app.use('/Api/admin',admin)
+app.listen(PORT,()=>{
+    console.log(`Port ${PORT} is Busy`)
+})

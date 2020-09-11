@@ -1,28 +1,79 @@
-import React from 'react'
-import {Form,Button,Container} from 'react-bootstrap'
-//import axios from 'axios'
-export default function Signup() {
-    function onsubmit(){
-      
-    }
-    return (
-      <Container className="align-items-center d-flex" style={{height:'100vh'}}>
-           <Form onSubmit={onsubmit}>
-    <Form.Label>Wait List</Form.Label>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Control type="text" placeholder="Name" required />
-  </Form.Group>
+import React, { Component } from 'react';
+import axios from 'axios';
 
-  <Form.Group controlId="formBasicPassword">
-    <Form.Control type="email" placeholder="Email" required />
-  </Form.Group>
-  
-  <Button variant="info" type="submit">
-    Join Now    
-  </Button>
-  
-</Form>
-      </Container>
-       
+export default class CreateUser extends Component {
+  constructor(props) {
+    super(props);
+
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangemail = this.onChangemail.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+
+    this.state = {
+      username: '',
+      email:''
+    }
+  }
+
+  onChangeUsername(e) {
+    this.setState({
+      username: e.target.value
+    })
+  }
+  onChangemail(e) {
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const user = {
+      username: this.state.username,
+      email:this.state.email
+    }
+
+    console.log(user);
+
+    axios.post('http://localhost:5000/api/user/add', user)
+      .then(res => console.log(res.data));
+
+    this.setState({
+      username: '',
+      email:''
+    })
+  }
+
+  render() {
+    return (
+      
+      <div className="container-md">
+        <h3>Wait List</h3>
+        <form onSubmit={this.onSubmit}>
+          <div className="form-group"> 
+            <label>Username: </label>
+            <input  type="text"
+                required
+                className="form-control"
+                value={this.state.username}
+                onChange={this.onChangeUsername}
+                />
+          </div>
+          <div className="form-group"> 
+            <label>Email: </label>
+            <input  type="text"
+                required
+                className="form-control"
+                value={this.state.email}
+                onChange={this.onChangemail}
+                />
+          </div>
+          <div className="form-group">
+            <input type="submit" value="Join Us" className="btn btn-primary" />
+          </div>
+        </form>
+      </div>
     )
+  }
 }

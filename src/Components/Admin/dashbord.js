@@ -14,7 +14,7 @@ function App() {
       <div className="container-md">
         <Navbar />
         <br/>
-        <Route path="/list" exact component={List} />
+        <Route path="/dashbord" exact component={List} />
         <Route path="/update" component={Update} />
         <Route path="/Edit" component={Edit} />
         <Route path="/delete" component={Delete} />

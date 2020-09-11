@@ -1,6 +1,6 @@
 const mongoos=require('mongoose')
 const Schema=mongoos.Schema
-const userShema=new Schema({
+const userSchma=new Schema({
     name:{
         type:String,
         required:true,
@@ -12,10 +12,11 @@ const userShema=new Schema({
     refid:{
         type:String,
         required:true
-    },queue:{
+    },
+    queue:{
         type:Number,
         required:true
     }
 })
 
-module.exports=user=mongoos.model('user',userShema)
+module.exports=user=mongoos.model('user',userSchma)

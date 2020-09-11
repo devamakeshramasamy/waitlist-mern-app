@@ -12,12 +12,13 @@ router.get('/',(req,res)=>{
 router.post('/add',(req,res)=>{
     const name=req.body.name
     const email=req.body.email
-    const Refid=req.body.refid
-    const queue=Number(req.body.queue);
-    const newuser=new user({name,email,Refid,queue})
-    newuser.save().then(user=>res.json(user))
+    const refid=req.body.refid
+    const queue=req.body.queue;
+    const user=new user({name,email,refid,queue})
+    user.save().then(user=>res.json(user))
+    .catch(err => res.status(400).json('Error: ' + err));
 })
-router.post('/update/:id',(req,res)=>{
+router.post('/:id',(req,res)=>{
     Exercise.findById(req.params.id)
     .then(user => {
       user.name = req.body.name;
@@ -32,8 +33,21 @@ router.post('/update/:id',(req,res)=>{
 })
 router.delete('/:id',()=>{
     user.findByIdAndDelete(req.params.id)
-    .then(user=>console.log("user is deleted"))
+    .then(user=>res.json(user))
     .catch(err=>console.log(err))
 })
-
+router.route('/update/:id').post((req, res) => {
+    Exercise.findById(req.params.id)
+      .then(user => {
+        user.name = req.body.name;
+      user.email = req.body.email;
+      user.refid = req.body.refid;
+      user.queue = Number(req.body.queue);
+  
+        user.save()
+          .then(() => res.json('Exercise updated!'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      })
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
 module.exports=router;

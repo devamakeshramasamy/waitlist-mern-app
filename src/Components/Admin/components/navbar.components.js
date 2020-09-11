@@ -12,15 +12,6 @@ export default class Navbar extends Component {
           <li className="navbar-item">
           <Link to="/Edit" className="nav-link">Edit</Link>
           </li>
-          <li className="navbar-item">
-          <Link to="/list" className="nav-link">List</Link>
-          </li>
-          <li className="navbar-item">
-          <Link to="/update" className="nav-link">Update</Link>
-          </li>
-          <li className="navbar-item">
-          <Link to="/delete" className="nav-link">Delete</Link>
-          </li>
         </ul>
         </div>
       </nav>

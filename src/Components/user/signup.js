@@ -1,9 +1,9 @@
 import React from 'react'
 import {Form,Button,Container} from 'react-bootstrap'
-import axios from 'axios'
+//import axios from 'axios'
 export default function Signup() {
     function onsubmit(){
-      axios.get("")
+      
     }
     return (
       <Container className="align-items-center d-flex" style={{height:'100vh'}}>

@@ -3,6 +3,7 @@ const mongoose =require('mongoose')
 const bodyParser=require('body-parser')
 const user =require('./Routes/user')
 const admin=require('./Routes/Admin')
+
 require('dotenv').config();
 
 const app=express()

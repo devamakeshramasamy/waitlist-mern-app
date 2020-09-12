@@ -6,8 +6,6 @@ const User = props => (
   <tr>
     <td>{props.user.username}</td>
     <td>{props.user.email}</td>
-    <td>{props.user.refid}</td>
-    <td>{props.user.queue}</td>
     <td>
       <Link to={"/edit/"+props.user._id}>edit</Link> | <a href="#" 
       onClick={() => { props.deleteuser(props.user._id) }}>delete</a>
@@ -26,7 +24,7 @@ export default class UserList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/api/user/')
+    axios.get('/api/user/')
       .then(response => {
         this.setState({ user: response.data })
       })
@@ -36,7 +34,7 @@ export default class UserList extends Component {
   }
 
   deleteuser(id) {
-    axios.delete('http://localhost:5000/api/user/'+id)
+    axios.delete('/api/user/'+id)
       .then(response => { console.log(response.data)});
 
     this.setState({
@@ -59,8 +57,6 @@ export default class UserList extends Component {
             <tr>
               <th>Username</th>
               <th>Email</th>
-              <th>Refid</th>
-              <th>Queue</th>
               <th>Actions</th>
             </tr>
           </thead>

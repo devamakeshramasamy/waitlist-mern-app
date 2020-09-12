@@ -33,7 +33,7 @@ export default class Edit extends Component {
           console.log(error);
         })
   
-      axios.get('http://localhost:5000/Api/user/')
+      axios.get('/Api/user/')
         .then(response => {
           this.setState({ users: response.data.map(user => user.username) });
         })

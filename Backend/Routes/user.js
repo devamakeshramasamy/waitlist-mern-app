@@ -12,10 +12,8 @@ router.get('/',(req,res)=>{
 router.post('/add',(req,res)=>{
     const name=req.body.name
     const email=req.body.email
-    const refid=req.body.refid
-    const queue=req.body.queue;
-    const user=new user({name,email,refid,queue})
-    user.save().then(user=>res.json(user))
+    const newuser=new user({name,email})
+    newuser.save().then(user=>res.json(user))
     .catch(err => res.status(400).json('Error: ' + err));
 })
 router.post('/:id',(req,res)=>{

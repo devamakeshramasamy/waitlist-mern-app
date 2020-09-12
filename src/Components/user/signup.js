@@ -36,14 +36,15 @@ export default class CreateUser extends Component {
 
     console.log(user);
 
-    axios.post('http://localhost:5000/api/user/add', user)
-      .then(res => console.log(res.data));
+    axios.post('/api/user/add', user)
+      .then(res => console.log(res.data))
+      .catch(err=>console.log(err))
 
     this.setState({
       username: '',
       email:''
     })
-  }
+  } 
 
   render() {
     return (
@@ -52,7 +53,7 @@ export default class CreateUser extends Component {
         <h3>Wait List</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
-            <label>Name: </label>
+            <label>Names: </label>
             <input  type="text"
                 required
                 className="form-control"

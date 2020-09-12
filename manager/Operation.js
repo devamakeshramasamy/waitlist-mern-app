@@ -1,3 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
+
+function createRefid(){
+    return uuidv4()
+}
+
 function referalVerfication(refCode){
             if(findref(refCode)){
                dbupdate(refCode,findereferaluserQueue()-1)
@@ -11,3 +17,5 @@ function findref(url,databaseEmailId){
         return false
     }
 }
+
+module.exports=createRefid
